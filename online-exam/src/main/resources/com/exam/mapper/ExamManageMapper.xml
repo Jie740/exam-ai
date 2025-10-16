@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.ExamManageMapper">
+
+    <resultMap id="BaseResultMap" type="com.exam.domain.ExamManage">
+            <id property="examCode" column="exam_code" />
+            <result property="description" column="description" />
+            <result property="source" column="source" />
+            <result property="paperId" column="paper_id" />
+            <result property="examDate" column="exam_date" />
+            <result property="totalTime" column="total_time" />
+            <result property="grade" column="grade" />
+            <result property="term" column="term" />
+            <result property="major" column="major" />
+            <result property="institute" column="institute" />
+            <result property="totalScore" column="total_score" />
+            <result property="type" column="type" />
+            <result property="tips" column="tips" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        exam_code,description,source,paper_id,exam_date,total_time,
+        grade,term,major,institute,total_score,
+        type,tips
+    </sql>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.JudgeQuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.exam.domain.JudgeQuestion">
+            <id property="questionId" column="question_id" />
+            <result property="subject" column="subject" />
+            <result property="question" column="question" />
+            <result property="answer" column="answer" />
+            <result property="analysis" column="analysis" />
+            <result property="score" column="score" />
+            <result property="level" column="level" />
+            <result property="section" column="section" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        question_id,subject,question,answer,analysis,score,
+        level,section
+    </sql>
+</mapper>

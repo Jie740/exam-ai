@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.ScoreMapper">
+
+    <resultMap id="BaseResultMap" type="com.exam.domain.Score">
+            <id property="scoreId" column="score_id" />
+            <result property="examCode" column="exam_code" />
+            <result property="studentId" column="student_id" />
+            <result property="subject" column="subject" />
+            <result property="ptScore" column="pt_score" />
+            <result property="etScore" column="et_score" />
+            <result property="score" column="score" />
+            <result property="answerDate" column="answer_date" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        score_id,exam_code,student_id,subject,pt_score,et_score,
+        score,answer_date
+    </sql>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.MultiQuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.exam.domain.MultiQuestion">
+            <id property="questionId" column="question_id" />
+            <result property="subject" column="subject" />
+            <result property="question" column="question" />
+            <result property="answerA" column="answer_a" />
+            <result property="answerB" column="answer_b" />
+            <result property="answerC" column="answer_c" />
+            <result property="answerD" column="answer_d" />
+            <result property="rightAnswer" column="right_answer" />
+            <result property="analysis" column="analysis" />
+            <result property="score" column="score" />
+            <result property="section" column="section" />
+            <result property="level" column="level" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        question_id,subject,question,answer_a,answer_b,answer_c,
+        answer_d,right_answer,analysis,score,section,
+        level
+    </sql>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.TeacherMapper">
+
+    <resultMap id="BaseResultMap" type="com.exam.domain.Teacher">
+            <id property="teacherId" column="teacher_id" />
+            <result property="teacherName" column="teacher_name" />
+            <result property="institute" column="institute" />
+            <result property="sex" column="sex" />
+            <result property="tel" column="tel" />
+            <result property="email" column="email" />
+            <result property="pwd" column="pwd" />
+            <result property="cardId" column="card_id" />
+            <result property="type" column="type" />
+            <result property="role" column="role" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        teacher_id,teacher_name,institute,sex,tel,email,
+        pwd,card_id,type,role
+    </sql>
+</mapper>

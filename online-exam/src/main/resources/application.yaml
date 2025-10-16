@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ExamSystemApplication
+  datasource:
+    username: root
+    password: 123
+    url: jdbc:mysql://192.168.127.128:3306/exam?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+#  data:
+#    redis:
+#      url: redis://192.168.127.128:6379
+#      database: 0
+#  ai:
+#    ollama:
+#      base-url: http://localhost:11434
+#      chat:
+#        model: deepseek-r1:1.5b
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.exam.mapper: debug
+    org.springframework.ai.chat.client.advisor: debug  # ??: ???????????
+    com.clj.ai: debug  # ?????????
+
+
+deepseek:
+  api-key: sk-f7befcfc686647b795172d40d1282e1a
+  base-url: https://api.deepseek.com/v1/chat/completions
