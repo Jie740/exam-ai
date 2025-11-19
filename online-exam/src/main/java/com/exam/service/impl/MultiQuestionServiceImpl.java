@@ -6,6 +6,7 @@ import com.exam.domain.MultiQuestion;
 import com.exam.mapper.MultiQuestionMapper;
 import com.exam.service.MultiQuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +36,7 @@ public class MultiQuestionServiceImpl extends ServiceImpl<MultiQuestionMapper, M
     }
 
     @Override
+    @Cacheable(value = "multiQuestion",key = "#paperId")
     public List<MultiQuestion> findByIdAndType(Integer paperId) {
         return multiQuestionMapper.findByIdAndType(paperId);
     }
@@ -43,6 +45,9 @@ public class MultiQuestionServiceImpl extends ServiceImpl<MultiQuestionMapper, M
     public int batchInsert(List<MultiQuestion> multiQuestions) {
         return multiQuestionMapper.batchInsert(multiQuestions);
     }
+
+
+
 }
 
 

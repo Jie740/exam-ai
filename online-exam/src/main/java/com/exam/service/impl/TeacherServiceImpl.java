@@ -16,7 +16,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher>
     implements TeacherService{
 
     @Override
-    public Teacher login(Integer username, String password) {
+    public Teacher login(Long username, String password) {
         return this.lambdaQuery().eq(Teacher::getTeacherId, username).eq(Teacher::getPwd, password).one();
     }
 }

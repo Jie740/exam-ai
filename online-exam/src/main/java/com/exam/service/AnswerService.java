@@ -26,4 +26,5 @@ public interface AnswerService {
     Result deleteAnswer(String type, Integer questionId);
 
     Result generateQuestions(GenerateForm generateForm, String response);
+
 }

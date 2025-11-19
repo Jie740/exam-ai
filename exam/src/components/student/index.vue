@@ -45,15 +45,42 @@ export default {
     this.userInfo()
   },
   methods: {
-    exit() {  //退出登录
-      this.$router.push({path:"/"}) //跳转到登录页面
+    async exit() {  //退出登录
+        await this.$axios.post("/api/logout").then(res => {
+          console.log("退出登录成功")
+        }).catch(error => {
+          this.$message({
+            showClose: true,
+            type: 'error',
+            message: '退出登录失败'
+          })
+        })
+      const role = this.$cookies.get("role")
+      const userId = this.$cookies.get("cid")
       this.$cookies.remove("cname") //清除cookie
       this.$cookies.remove("cid")
+      this.$cookies.remove("role")
+      this.$cookies.remove(role+"_"+ userId+"_token")
+      this.$router.push({path:"/"}) //跳转到登录页面
+
     },
     manage() {  //跳转到修改密码页面
       this.$router.push({path: '/manager'})
     },
     userInfo() {
+      const role = this.$cookies.get("role")
+      const userId = this.$cookies.get("cid")
+      let token = this.$cookies.get(role+"_"+ userId+"_token")
+      if (!token) {
+        this.$router.push({path:"/"}) //跳转到登录页面
+        this.$message({
+          showClose: true,
+          type: 'error',
+          message: '请先登录'
+        })
+        return
+      }
+      this.$axios.defaults.headers.common.token = token
       let studentName = this.$cookies.get("cname")
       let studentId = this.$cookies.get("cid")
       console.log(`studentId${studentId}`)

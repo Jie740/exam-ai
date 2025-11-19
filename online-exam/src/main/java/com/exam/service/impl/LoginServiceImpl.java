@@ -19,17 +19,17 @@ public class LoginServiceImpl implements LoginService {
     private final TeacherService teacherService;
 
     @Override
-    public Adminuser adminLogin(Integer username, String password) {
+    public Adminuser adminLogin(Long username, String password) {
         return adminService.login(username,password);
     }
 
     @Override
-    public Teacher teacherLogin(Integer username, String password) {
+    public Teacher teacherLogin(Long  username, String password) {
         return teacherService.login(username,password);
     }
 
     @Override
-    public Student studentLogin(Integer username, String password) {
+    public Student studentLogin(Long  username, String password) {
         return studentService.login(username,password);
     }
 }

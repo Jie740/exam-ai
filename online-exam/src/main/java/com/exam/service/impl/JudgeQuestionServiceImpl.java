@@ -6,6 +6,7 @@ import com.exam.domain.JudgeQuestion;
 import com.exam.mapper.JudgeQuestionMapper;
 import com.exam.service.JudgeQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class JudgeQuestionServiceImpl extends ServiceImpl<JudgeQuestionMapper, J
     }
 
     @Override
+    @Cacheable(value = "judgeQuestion", key = "#paperId")
     public List<JudgeQuestion> findByIdAndType(Integer paperId) {
         return judgeQuestionMapper.findByIdAndType(paperId);
     }

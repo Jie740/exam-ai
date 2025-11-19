@@ -17,6 +17,10 @@
               <el-form-item label="密码">
                 <el-input v-model="formLabelAlign.password" placeholder="请输入密码" type='password'></el-input>
               </el-form-item>
+              <el-form-item label="身份">
+                <el-button size="mini" :type="formLabelAlign.role === 'student' ? 'primary' : 'default'" @click="setRole('student')">学生</el-button>
+                <el-button size="mini" :type="formLabelAlign.role === 'teacher' ? 'primary' : 'default'" @click="setRole('teacher')">教师</el-button>
+              </el-form-item>
               <div class="submit">
                 <el-button type="primary" class="row-login" @click="login()">登录</el-button>
               </div>
@@ -32,11 +36,7 @@
         </div>
       </el-col>
     </el-row>
-    <el-row class="footer">
-      <el-col>
-        <p class="msg2">版权所有 ©2019 <!--重庆文理学院计科2班余晓江--> 保留所有权利  <a href="http://beian.miit.gov.cn/" target="_blank">渝ICP备19001371号</a></p>
-      </el-col>
-    </el-row>
+ 
     <section class="remind">
       <span>管理员账号：9527</span>
       <span>教师账号：20081001</span>
@@ -55,7 +55,8 @@ export default {
       labelPosition: 'left',
       formLabelAlign: {
         username: '20154084',
-        password: '123456'
+        password: '123456',
+        role: 'student'
       }
     }
   },
@@ -72,26 +73,32 @@ export default {
       }).then(res=>{
         let resData = res.data.data
         if(resData != null) {
-          switch(resData.role) {
+          switch(resData.userInfo.role) {
             case "0":  //管理员
               this.$cookies.set("cname", resData.adminName)
               this.$cookies.set("cid", resData.adminId)
               this.$cookies.set("role", 0)
+              this.$cookies.set(resData.userInfo.role+"_"+ resData.userInfo.adminId+"_token", resData.token)
               this.$router.push({path: '/index' }) //跳转到首页
               break
             case "1": //教师
-              this.$cookies.set("cname", resData.teacherName)
-              this.$cookies.set("cid", resData.teacherId)
-              this.$cookies.set("role", 1)
+              this.$cookies.set("cname", resData.userInfo.teacherName)
+              this.$cookies.set("cid", resData.userInfo.teacherId)
+              this.$cookies.set("role", resData.userInfo.role)
+              this.$cookies.set(resData.userInfo.role+"_"+ resData.userInfo.teacherId+"_token", resData.token)
               this.$router.push({path: '/index' }) //跳转到教师用户
               break
             case "2": //学生
-              this.$cookies.set("cname", resData.studentName)
-              this.$cookies.set("cid", resData.studentId)
+              this.$cookies.set("cname", resData.userInfo.studentName)
+              this.$cookies.set("cid", resData.userInfo.studentId)
+              this.$cookies.set("role", resData.userInfo.role)
+              this.$cookies.set(resData.userInfo.role+"_"+ resData.userInfo.studentId+"_token", resData.token)
               this.$router.push({path: '/student'})
               break
           }
         }
+        console.log(this.$cookies.get("role"))
+
         if(resData == null) { //错误提示
           this.$message({
             showClose: true,
@@ -100,6 +107,9 @@ export default {
           })
         }
       })
+    },
+    setRole(role) {
+      this.formLabelAlign.role = role
     },
     clickTag(key) {
       this.role = key

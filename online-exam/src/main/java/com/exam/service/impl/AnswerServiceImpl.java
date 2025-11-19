@@ -31,6 +31,9 @@ public class AnswerServiceImpl implements AnswerService {
     private final JudgeQuestionService judgeQuestionService;
     private final FillQuestionService fillQuestionService;
     private final PaperManageService paperManageService;
+
+
+
     @Override
     @Transactional
     public Result generateQuestions(GenerateForm generateForm, String response) {
@@ -48,7 +51,7 @@ public class AnswerServiceImpl implements AnswerService {
                             PaperManage pq = new PaperManage();
                             pq.setPaperId(Integer.valueOf(generateForm.getPaperId()));       // 试卷ID
                             pq.setQuestionId(questionId); // 题目ID
-                            pq.setQuestionType(1);               // 固定类型=1（单选题）
+                            pq.setQuestionType(1);               // 固定类型=1（选择题）
                             return pq;
                         })
                         .collect(Collectors.toList());
@@ -94,6 +97,9 @@ public class AnswerServiceImpl implements AnswerService {
                 return Result.error("生成失败");
         }
     }
+
+
+
     @Override
     public IPage<AnswerVO> findAll(Page<AnswerVO> page) {
         return answerMapper.findAll(page);

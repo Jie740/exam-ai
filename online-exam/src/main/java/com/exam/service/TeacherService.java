@@ -10,5 +10,5 @@ import com.exam.domain.Teacher;
 */
 public interface TeacherService extends IService<Teacher> {
 
-    Teacher login(Integer username, String password);
+    Teacher login(Long  username, String password);
 }

@@ -6,9 +6,9 @@ import com.exam.domain.Teacher;
 
 public interface LoginService {
 
-    public Adminuser adminLogin(Integer username, String password);
+    public Adminuser adminLogin(Long username, String password);
 
-    public Teacher teacherLogin(Integer username, String password);
+    public Teacher teacherLogin(Long username, String password);
 
-    public Student studentLogin(Integer username, String password);
+    public Student studentLogin(Long username, String password);
 }

@@ -10,5 +10,5 @@ import com.exam.domain.Adminuser;
 */
 public interface AdminuserService extends IService<Adminuser> {
 
-    Adminuser login(Integer username, String password);
+    Adminuser login(Long username, String password);
 }

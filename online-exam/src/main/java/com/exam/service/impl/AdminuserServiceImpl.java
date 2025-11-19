@@ -16,7 +16,7 @@ public class AdminuserServiceImpl extends ServiceImpl<AdminuserMapper, Adminuser
     implements AdminuserService{
 
     @Override
-    public Adminuser login(Integer username, String password) {
+    public Adminuser login(Long  username, String password) {
         return this.lambdaQuery().eq(Adminuser::getAdminId, username).eq(Adminuser::getPwd, password).one();
     }
 }

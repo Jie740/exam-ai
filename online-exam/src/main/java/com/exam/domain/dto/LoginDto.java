@@ -1,13 +1,14 @@
-package com.exam.domain;
+package com.exam.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Login {
+@Data
+public class LoginDto {
+    private String role;
     private Long username;
     private String password;
 }

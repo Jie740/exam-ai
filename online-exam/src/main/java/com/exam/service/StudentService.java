@@ -10,5 +10,5 @@ import com.exam.domain.Student;
 */
 public interface StudentService extends IService<Student> {
 
-    Student login(Integer username, String password);
+    Student login(Long  username, String password);
 }

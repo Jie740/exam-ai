@@ -6,6 +6,7 @@ import com.exam.domain.FillQuestion;
 import com.exam.mapper.FillQuestionMapper;
 import com.exam.service.FillQuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class FillQuestionServiceImpl extends ServiceImpl<FillQuestionMapper, Fil
     }
 
     @Override
+    @Cacheable(cacheNames = "fillQuestion",key = "#paperId")
     public List<FillQuestion> findByIdAndType(Integer paperId) {
         return fillQuestionMapper.findByIdAndType(paperId);
     }

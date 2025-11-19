@@ -9,7 +9,8 @@ import com.exam.service.JudgeQuestionService;
 import com.exam.service.MultiQuestionService;
 import com.exam.service.PaperService;
 import com.exam.util.Result;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -17,19 +18,17 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 public class PaperController {
 
-    @Autowired
-    private PaperService paperService;
+    private final PaperService paperService;
 
-    @Autowired
-    private JudgeQuestionService judgeQuestionService;
+    private final JudgeQuestionService judgeQuestionService;
 
-    @Autowired
-    private MultiQuestionService multiQuestionService;
+    private final MultiQuestionService multiQuestionService;
 
-    @Autowired
-    private FillQuestionService fillQuestionService;
+    private final FillQuestionService fillQuestionService;
+    private final StringRedisTemplate stringRedisTemplate;
     @GetMapping("/papers")
     public Result findAll() {
        return Result.ok(paperService.findAll());
@@ -37,6 +36,9 @@ public class PaperController {
 
     @GetMapping("/paper/{paperId}")
     public Map<Integer, List<?>> findById(@PathVariable("paperId") Integer paperId) {
+        if (paperId == null) {
+            throw new IllegalArgumentException("paperId不能为空");
+        }
         List<MultiQuestion> multiQuestionRes = multiQuestionService.findByIdAndType(paperId);   //选择题题库 1
         List<FillQuestion> fillQuestionsRes = fillQuestionService.findByIdAndType(paperId);     //填空题题库 2
         List<JudgeQuestion> judgeQuestionRes = judgeQuestionService.findByIdAndType(paperId);   //判断题题库 3

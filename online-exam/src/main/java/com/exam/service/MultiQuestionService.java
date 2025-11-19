@@ -2,6 +2,7 @@ package com.exam.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.exam.domain.MultiQuestion;
+import com.exam.util.Result;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface MultiQuestionService extends IService<MultiQuestion> {
 
 
     int batchInsert(List<MultiQuestion> multiQuestions);
+
 }

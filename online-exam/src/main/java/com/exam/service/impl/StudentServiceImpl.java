@@ -16,7 +16,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student>
     implements StudentService{
 
     @Override
-    public Student login(Integer username, String password) {
+    public Student login(Long  username, String password) {
         return this.lambdaQuery().eq(Student::getStudentId, username).eq(Student::getPwd, password).one();
     }
 }
